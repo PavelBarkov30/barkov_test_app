@@ -1,5 +1,0 @@
- numpy 
- streamlit
- scipy
- pandas
- matplotlib.pyplot
