@@ -100,8 +100,11 @@ elif app_mode == 'Разделение по возрасту':
     st.header(':red[Выберите порог пропущенных дней]')
     work_days = st.slider('work_days', min_day, max_day)
     above = above.loc[above['Количество больничных дней'] >= work_days, 'Количество больничных дней']
-    below = below.loc[below['Количество больничных дней'] < work_days, 'Количество больничных дней']
-    p = statistic(above, below)
+    below = below.loc[below['Количество больничных дней'] >= work_days, 'Количество больничных дней']
+    try:
+        p = statistic(above, below)
+    except:
+        st.markdown('Выберете другой порог пропущенных дней ')
     st.markdown(
         f'_Требуется проверить гипотезу, что Работники старше {age} пропускают в течение года более {work_days} рабочих дней  по болезни значимо чаще своих более молодых коллег._')
 
