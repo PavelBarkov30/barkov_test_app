@@ -4,7 +4,9 @@ import scipy
 import streamlit as st
 import matplotlib.pyplot as plt
 
-st.set_page_config(page_title="Контроль групп риска")
+st.title("Контроль групп риска")
+st.subheader('Загрузите файл')
+upload_file = st.file_uploader('Выберите файл')
 
 # считывание данных
 def read_file(way):
@@ -54,10 +56,10 @@ def statistic(sample_1, sample_2):
 app_mode = st.sidebar.selectbox('Группы риска', ['Разделение по полу', 'Разделение по возрасту'])
 
 if app_mode == 'Разделение по полу':
-    df = read_file('./Статистика.csv')
+    df = read_file(upload_file)
     # выбор порога пропущенных дней
     min_days, max_days = min_max_days(df)
-    st.header(':red[Выберите порог пропущенных дней]')
+    st.markdown(':red[Выберите порог пропущенных дней]')
     work_days = st.slider('work_days', min_days, max_days)
     st.markdown(
         f'_Требуется проверить гипотезу, что мужчины пропускают в течение года более {work_days} рабочих дней по болезни значимо чаще женщин_')
@@ -91,14 +93,14 @@ if app_mode == 'Разделение по полу':
 
 
 elif app_mode == 'Разделение по возрасту':
-    df = read_file('./Статистика.csv')
+    df = read_file(upload_file)
     # выбор порога возраста
     min_age, max_age = min_max_age(df)
-    st.header(':red[Выберите порог возраста]')
+    st.markdown(':red[Выберите порог возраста]')
     age = st.selectbox('age', range(min_age, max_age))
     above, below, max_day, min_day = age_hipo(df, age, min_age)
     # выбор порога пропущенных дней
-    st.header(':red[Выберите порог пропущенных дней]')
+    st.markdown(':red[Выберите порог пропущенных дней]')
     work_days = st.slider('work_days', min_day, max_day)
     above = above.loc[above['Количество больничных дней'] >= work_days, 'Количество больничных дней']
     below = below.loc[below['Количество больничных дней'] >= work_days, 'Количество больничных дней']
