@@ -1,9 +1,8 @@
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import scipy
 import streamlit as st
-import plotly.express as px
+import matplotlib.pyplot as plt
 
 st.set_page_config(page_title="Контроль групп риска")
 
