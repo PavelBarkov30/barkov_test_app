@@ -7,12 +7,8 @@ import matplotlib.pyplot as plt
 st.title("Контроль групп риска")
 st.subheader('Загрузите файл')
 upload_file = st.file_uploader('Выберите файл')
-
-# считывание данных
-def read_file(way):
-    df = pd.read_csv(way, encoding='cp1251')
-    return df
-
+if uploaded_file is not None:
+    df = pd.read_csv(upload_file, encoding='cp1251')
 
 def min_max_days(df):
     min_days = int(df['Количество больничных дней'].min())
@@ -56,7 +52,6 @@ def statistic(sample_1, sample_2):
 app_mode = st.sidebar.selectbox('Группы риска', ['Разделение по полу', 'Разделение по возрасту'])
 
 if app_mode == 'Разделение по полу':
-    df = read_file(upload_file)
     # выбор порога пропущенных дней
     min_days, max_days = min_max_days(df)
     st.markdown(':red[Выберите порог пропущенных дней]')
@@ -93,7 +88,6 @@ if app_mode == 'Разделение по полу':
 
 
 elif app_mode == 'Разделение по возрасту':
-    df = read_file(upload_file)
     # выбор порога возраста
     min_age, max_age = min_max_age(df)
     st.markdown(':red[Выберите порог возраста]')
