@@ -1,9 +1,11 @@
-import numpy as np
-import streamlit as st
-import scipy
-import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import scipy
+import streamlit as st
+import plotly.express as px
 
+st.set_page_config(page_title="Контроль групп риска")
 
 # считывание данных
 def read_file(way):
