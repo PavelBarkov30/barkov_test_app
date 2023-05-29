@@ -7,6 +7,7 @@
 
 
 
-Так же сделан дашборд на Streamlit с возможностью задать параметры `age` и `work_days`<https://pavelbarkov30-barkov-test-app-app-frk9dm.streamlit.app/>
+Так же сделан дашборд на Streamlit с возможностью задать параметры `age` и `work_days` и загрузить любой файл такой же структуры.
+<https://pavelbarkov30-barkov-test-app-app-frk9dm.streamlit.app/>
 
 Для установки всех необходимых модулей используйте `pip install requirements.txt` 
